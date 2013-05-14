@@ -29,16 +29,19 @@ def load_filter(config):
     mode = config.get('mode', None)
     args = config.get('args', [])
 
-    if not (name and mode):
-        raise ConfigurationError('filters must have a name and a mode defined')
+    if not name:
+        raise ConfigurationError('must specify filter name')
 
     filter = FILTERS.get(name, None)
 
     if not filter:
         raise InvalidFilter("no implementation for filter '%s'" % name)
 
-    if mode not in filter.allowed_modes:
-        raise InvalidFilter('invalid mode "%s", must be one of: %s' % (mode, filter.allowed_modes))
+    if mode:
+        if mode not in filter.allowed_modes:
+            raise InvalidFilter('invalid mode "%s", must be one of: %s' % (mode, filter.allowed_modes))
+    else:
+        mode = 'allow'
 
     filter = filter(name=name, mode=mode, args=args)
 

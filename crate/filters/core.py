@@ -3,7 +3,7 @@ import re
 class Filter(object):
     allowed_modes = ['allow', 'deny']
 
-    def __init__(self, name, mode, args = []):
+    def __init__(self, name, mode='allow', args = []):
         self.name = name
         self.mode = mode
         self.args = args
