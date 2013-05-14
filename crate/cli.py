@@ -44,6 +44,7 @@ def main(argv=None):
     for m in managers:
         LOG.info('syncing manager from "%s" (%s)' % (m.config_file, m.__class__.__name__))
         m.sync()
+    LOG.info('done resource sync')
 
 if __name__ == '__main__':
     main()
