@@ -22,8 +22,6 @@ class RpmManager(FileManager):
         tmpdir = FileManager.stage(self, files)
 
         # copy in old repodata and createrepo cache if they exist
-        repodata = os.path.join(self.destination, 'repodata')
-        cache = os.path.join(self.destination, '.cache')
         for d in 'repodata', '.cache':
             full = os.path.join(self.destination, d)
             if os.path.isdir(full):
