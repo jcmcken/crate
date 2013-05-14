@@ -28,6 +28,8 @@ Manage "virtual" file repositories with ease.
 mkdir -p $RPM_BUILD_ROOT
 %{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 
+%{__install} -d -m 0755 $RPM_BUILD_ROOT%{_sysconfdir}/crate/repos.d
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -35,6 +37,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0644,root,root,0755)
 %attr(0755,root,root) %{_bindir}/crate
 %{python_sitelib}/*
+%attr(0755,root,root) /etc/crate/repos.d
 
 %changelog
 * Sat May 18 2013 - Jon McKenzie - 0.1.0
