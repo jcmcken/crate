@@ -1,4 +1,5 @@
 from crate.managers.file import FileManager
+from crate.exc import SyncError
 from crate.fs import files_in_dir
 from crate.proc import run
 import shutil
@@ -17,6 +18,8 @@ class RpmManager(FileManager):
         LOG.debug(stdout)
         if stderr:
             LOG.error(stderr)
+        if code != 0:
+            raise SyncError('failed to run createrepo on staged RPM repository')
 
     def stage(self, files):
         tmpdir = FileManager.stage(self, files)

@@ -8,5 +8,3 @@ FILTERS = {
   'rpm_arch': RpmArchFilter,
 }
 
-class InvalidFilter(NameError): pass
-

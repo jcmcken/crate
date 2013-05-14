@@ -2,8 +2,9 @@ import logging
 import os
 import yaml
 from crate.fs import files_in_dir
-from crate.filters import FILTERS, InvalidFilter
-from crate.managers import MANAGERS, InvalidManager
+from crate.filters import FILTERS
+from crate.managers import MANAGERS
+from crate.exc import ConfigurationError, InvalidManager, InvalidFilter
 
 DEFAULT_REPOSD_DIR = '/etc/crate/repos.d'
 LOG_LEVELS = {
@@ -13,8 +14,6 @@ LOG_LEVELS = {
   'debug': logging.DEBUG,
   'fatal': logging.FATAL,
 }
-
-class ConfigurationError(RuntimeError): pass
 
 def load_repo_configs(directory):
     config_files = files_in_dir(directory, suffix='yml')

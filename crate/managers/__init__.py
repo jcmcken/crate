@@ -6,8 +6,6 @@ MANAGERS = {
   'rpm': RpmManager,
 }
 
-class InvalidManager(NameError): pass
-
 def duplicate_destinations(managers):
     return False
     dest_map = {}
