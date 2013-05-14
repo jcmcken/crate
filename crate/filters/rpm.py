@@ -1,5 +1,5 @@
 from crate.filters.core import Filter
-from crate.rpm import get_header
+from crate._rpm import get_header, compare_versions
 
 class RpmArchFilter(Filter):
     def transform(self, item):
