@@ -1,4 +1,5 @@
 from crate.fs import safe_overwrite_dir
+from copy import deepcopy
 import logging
 
 LOG = logging.getLogger(__name__)
@@ -37,7 +38,9 @@ class Manager(object):
         Iterate over ``self.filters``, filtering out unwanted items.
         """
         if self.filters:
-            result = [ i for i in items for f in self.filters if f.filter(i) ]
+            result = deepcopy(items)
+            for f in self.filters:
+                result = f.filter(result)
         else:
             result = items
         return result

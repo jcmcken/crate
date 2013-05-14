@@ -1,4 +1,5 @@
 import re
+from copy import deepcopy
 
 class Filter(object):
     allowed_modes = ['allow', 'deny']
@@ -8,16 +9,34 @@ class Filter(object):
         self.mode = mode
         self.args = args
 
+        self.preprocess_args()
+
+    def build_args(self, items):
+        """
+        Some filters will dynamically build up ``self.args`` from the filter arguments
+        rather than taking them from the config file.
+
+        E.g.: a filter which screens out all packages in the source locations
+        except the latest versions of those packages.
+        """
+        pass
+
     def allow(self, item):
         return self.matches(item)
 
     def deny(self, item):
         return not self.matches(item)
 
-    def filter(self, item):
-        transformed = self.transform(item)
+    def filter(self, items):
+        self.build_args(items)
+    
+        result = deepcopy(items)
         mode_func = getattr(self, self.mode)
-        return mode_func(transformed)
+        for item in items:
+            transformed = self.transform(item)
+            if not mode_func(transformed):
+                result.remove(item)
+        return result
 
     def preprocess_args(self):
         """
