@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+try:
+    from crate.cli import main
+    main()
+except KeyboardInterrupt:
+    raise SystemExit('cancelled by user')
