@@ -1,7 +1,7 @@
 import logging
 import os
 import yaml
-from crate.fs import files_in_dir
+from crate.fs import files_in_dir, expandpath
 from crate.filters import FILTERS
 from crate.managers import MANAGERS
 from crate.exc import ConfigurationError, InvalidManager, InvalidFilter
@@ -57,6 +57,9 @@ def load_config(config):
     if None in [driver, sources, destination]:
         raise ConfigurationError('configurations must contain at least a '
                                  'driver, sources, and a destination.')
+
+    destination = expandpath(destination)
+    sources = map(expandpath, sources)
 
     manager = MANAGERS.get(driver, None)
     if not manager:

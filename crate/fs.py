@@ -34,3 +34,6 @@ def safe_overwrite_dir(old, new, warn_on_overwrite=False):
     if isdir:
         LOG.warn("removing old directory and all of its contents")
         shutil.rmtree(tempdir)
+
+def expandpath(path):
+    return os.path.realpath(os.path.expanduser(path))
