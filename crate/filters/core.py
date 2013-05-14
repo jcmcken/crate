@@ -1,5 +1,8 @@
 import re
+import logging
 from copy import deepcopy
+
+LOG = logging.getLogger(__name__)
 
 class Filter(object):
     allowed_modes = ['allow', 'deny']
@@ -35,6 +38,7 @@ class Filter(object):
         for item in items:
             transformed = self.transform(item)
             if not mode_func(transformed):
+                LOG.debug('filtering out %s' % item)
                 result.remove(item)
         return result
 

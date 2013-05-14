@@ -40,6 +40,7 @@ class Manager(object):
         if self.filters:
             result = deepcopy(items)
             for f in self.filters:
+                LOG.info('applying filter "%s"' % f.__class__.__name__)
                 result = f.filter(result)
         else:
             result = items
