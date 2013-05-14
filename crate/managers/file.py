@@ -1,7 +1,10 @@
-from crate.managers import Manager
+from crate.managers.core import Manager
 from crate.fs import files_in_dir, safe_overwrite_dir
 import os
 import tempfile
+import logging
+
+LOG = logging.getLogger(__name__)
 
 class FileManager(Manager):
     def locate(self):
@@ -10,9 +13,12 @@ class FileManager(Manager):
 
     def stage(self, files):
         tmpdir = tempfile.mkdtemp()
+        LOG.debug('staging directory is "%s"' % tmpdir)
         for f in files:
             fname = os.path.basename(f)
-            os.symlink(f, os.path.join(tmpdir, fname))
+            full = os.path.join(tmpdir, fname)
+            LOG.debug('staging file "%s" at "%s"' % (f, full))
+            os.symlink(f, full)
         return tmpdir
 
     def build(self, destination):

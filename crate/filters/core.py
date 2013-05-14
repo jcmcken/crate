@@ -1,7 +1,9 @@
 import re
 
 class Filter(object):
-    def __init__(self, name, mode, args):
+    allowed_modes = ['allow', 'deny']
+
+    def __init__(self, name, mode, args = []):
         self.name = name
         self.mode = mode
         self.args = args
