@@ -1,5 +1,6 @@
 from crate.managers.core import Manager
 from crate.fs import files_in_dir, safe_overwrite_dir
+from crate.exc import SyncError
 import os
 import tempfile
 import logging
@@ -50,4 +51,7 @@ class FileManager(Manager):
         pass
 
     def migrate(self, source):
+        if os.path.isdir(self.destination) and not \
+          os.path.isfile(os.path.join(self.destination, '.crate')):
+            raise SyncError('"%s" does not appear to be a crate-managed repo' % self.destination)    
         safe_overwrite_dir(self.destination, source)
