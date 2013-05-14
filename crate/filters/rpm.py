@@ -1,11 +1,11 @@
-from crate.filters.core import Filter, BelongsToFilter
+from crate.filters.core import BelongsToFilter
 from crate._rpm import get_header, compare_versions
 
-class RpmArchFilter(Filter):
+class RpmArchFilter(BelongsToFilter):
     def transform(self, item):
         return get_header(item)['arch']
 
-class RpmNameFilter(Filter):
+class RpmNameFilter(BelongsToFilter):
     def transform(self, item):
         return get_header(item)['name']
 
