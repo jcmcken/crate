@@ -1,4 +1,4 @@
-from crate.filters.core import BelongsToFilter
+from crate.filters.core import BelongsToFilter, RegexFilter
 from crate._rpm import get_header, compare_versions
 
 class RpmArchFilter(BelongsToFilter):
@@ -8,6 +8,8 @@ class RpmArchFilter(BelongsToFilter):
 class RpmNameFilter(BelongsToFilter):
     def transform(self, item):
         return get_header(item)['name']
+
+class RpmNameRegexFilter(RegexFilter, RpmNameFilter): pass
 
 class RpmLatestFilter(BelongsToFilter):
     def build_args(self, items):
