@@ -12,10 +12,10 @@ def get_cli():
     cli = optparse.OptionParser(
         usage='usage: crate [options]'
     )  
-    cli.add_option('-c', '--config-dir', default=DEFAULT_REPOSD_DIR,
+    cli.add_option('-d', '--config-dir', default=DEFAULT_REPOSD_DIR,
         help='Crate repos.d directory (defaults to "%s")' % DEFAULT_REPOSD_DIR)
     cli.add_option('-n', '--noop', action='store_true',
-        help="Load configs, but don't sync any files")
+        help="Load configs, but don't do anything")
     cli.add_option('-l', '--log-level', default='info', choices=LOG_LEVELS.keys(),
         help='Specify command-line logging verbosity')
     return cli
