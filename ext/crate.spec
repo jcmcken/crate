@@ -12,6 +12,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  coreutils
 Requires:       createrepo
 Requires:       python2
+Requires:       PyYAML
 BuildArch:      noarch
 
 %description
