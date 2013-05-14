@@ -6,7 +6,7 @@ from crate.config import (
 )
 from crate.managers import duplicate_destinations
 
-LOG = logging.getLogger(__name__)
+LOG = logging.getLogger('crate.cli')
 
 def get_cli():
     cli = optparse.OptionParser(
