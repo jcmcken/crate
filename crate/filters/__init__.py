@@ -1,5 +1,5 @@
 from crate.filters.rpm import RpmNameFilter, RpmArchFilter
-from crate.filters.string import BelongsToFilter, RegexFilter
+from crate.filters.core import BelongsToFilter, RegexFilter
 
 FILTERS = {
   'regex': RegexFilter,
