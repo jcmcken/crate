@@ -18,6 +18,24 @@ The goal of ``crate`` is to make it easy to keep all of your files in their nati
 (so to speak), and to deploy those files easily according to defined rules without taking
 up additional filesystem space.
 
+## Command Line
+
+``crate`` has the following command-line usage:
+
+```text
+usage: crate [options]
+
+options:
+  -h, --help            show this help message and exit
+  -d CONFIG_DIR, --config-dir=CONFIG_DIR
+                        Crate repos.d directory (defaults to
+                        "/etc/crate/repos.d")
+  -n, --noop            Load configs, but don't do anything
+  -l LOG_LEVEL, --log-level=LOG_LEVEL
+                        Specify command-line logging verbosity
+```
+
+
 ## Configuration
 
 Repository configuration files live in ``/etc/crate/repos.d`` by default. (This can be 
